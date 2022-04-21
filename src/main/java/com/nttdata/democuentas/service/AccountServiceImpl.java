@@ -17,9 +17,6 @@ import java.time.LocalDateTime;
 public class AccountServiceImpl implements AccountService{
 
     @Autowired
-    private ReactiveMongoTemplate mongoTemplate;
-
-    @Autowired
     private AccountRepository accountRepository;
 
     @Override
@@ -46,14 +43,12 @@ public class AccountServiceImpl implements AccountService{
 
     @Override
     public Flux<Account> findByTypeAccount(String typeAccount){
-        Query query = new Query(Criteria.where("typeAccount").is(typeAccount));
-        return mongoTemplate.find(query,Account.class);
+       return accountRepository.findByTypeAccount(typeAccount);
     }
 
     @Override
     public Mono<Account> findByDni(int dni){
-        Query query = new Query(Criteria.where("dni").is(dni));
-        return mongoTemplate.findOne(query,Account.class);
+        return accountRepository.findByDni(dni);
     }
 
 }

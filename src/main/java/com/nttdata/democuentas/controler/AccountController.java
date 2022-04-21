@@ -18,7 +18,7 @@ public class AccountController {
     @Autowired
     private AccountService accountService;
 
-    @GetMapping("/account")
+    @GetMapping("/accounts")
     public ResponseEntity<Flux<Account>> getAccounts(){
         return new ResponseEntity<>(accountService.getAllAccounts(), HttpStatus.OK);
     }
